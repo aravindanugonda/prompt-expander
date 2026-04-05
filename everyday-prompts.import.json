@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "snippets": [
+    {
+      "id": "everyday-high-signal-answer",
+      "title": "Everyday High-Signal Answer",
+      "trigger": "?everyday-answer",
+      "description": "Compact everyday prompt for practical, high-quality answers.",
+      "body": "Give a practical, high-signal answer. State the key assumptions, avoid generic filler, highlight any important trade-offs, and end with a clear recommendation.",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-email-draft",
+      "title": "Draft Professional Email",
+      "trigger": "?draft-email",
+      "description": "Write a clear professional email from rough context.",
+      "body": "Draft a professional email.\n\nContext:\n[Who it is to, what it is about, and what outcome you want]\n\nRequirements:\n- Keep it clear and natural\n- Match a professional but human tone\n- Avoid unnecessary length\n- Include a clear ask or next step if relevant\n\nThen provide:\n1. Subject line\n2. Email draft\n3. Shorter version if useful",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-rewrite-concise",
+      "title": "Rewrite More Clearly",
+      "trigger": "?rewrite-clearly",
+      "description": "Rewrite text to be clearer and more concise.",
+      "body": "Rewrite the text below to make it clearer, tighter, and easier to follow.\n\nRequirements:\n- Keep the meaning intact\n- Remove unnecessary words\n- Improve structure and flow\n- Preserve the intended tone unless I ask otherwise\n\nText:\n[PASTE TEXT HERE]\n\nThen provide:\n1. Improved version\n2. Biggest changes made",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-summarize-thread",
+      "title": "Summarize Thread",
+      "trigger": "?summarize-thread",
+      "description": "Summarize an email thread, chat, or notes into what matters.",
+      "body": "Summarize this for usefulness, not fluff.\n\nRequirements:\n- Keep it concise and information-dense\n- Capture the main point, decisions, action items, and unresolved questions\n- Remove repetition and low-value detail\n\nMaterial:\n[PASTE MATERIAL HERE]\n\nOutput Format:\n1. Executive summary\n2. Key points\n3. Action items\n4. Open issues",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-explain-simply",
+      "title": "Explain Simply",
+      "trigger": "?explain-simply",
+      "description": "Explain a topic clearly without dumbing it down too much.",
+      "body": "Explain this clearly and simply.\n\nTopic:\n[INSERT TOPIC HERE]\n\nRequirements:\n- Start with intuition\n- Use plain language first\n- Add technical detail only where it helps understanding\n- Include one concrete example\n- End with a short summary I can remember",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-action-plan",
+      "title": "Turn Into Action Plan",
+      "trigger": "?action-plan",
+      "description": "Convert a goal or messy notes into concrete next steps.",
+      "body": "Turn this into an actionable plan.\n\nGoal or notes:\n[PASTE HERE]\n\nRequirements:\n- Clarify the goal first if needed\n- Break the work into practical steps\n- Put the steps in the right order\n- Call out blockers or dependencies\n- Keep it execution-focused\n\nOutput Format:\n1. Goal\n2. Ordered steps\n3. Dependencies or blockers\n4. What to do first",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-compare-options",
+      "title": "Compare Two Or Three Options",
+      "trigger": "?compare-options",
+      "description": "Quick side-by-side option comparison with a recommendation.",
+      "body": "Compare these options and recommend the strongest one.\n\nOptions:\n- [Option A]\n- [Option B]\n- [Option C if needed]\n\nContext:\n[Constraints, priorities, budget, timeline, or other factors]\n\nRequirements:\n- Use the same criteria for each option\n- Highlight practical trade-offs\n- Identify hidden costs or risks\n- Recommend the best fit for the stated context\n\nOutput Format:\n1. Comparison criteria\n2. Evaluation of each option\n3. Trade-offs\n4. Recommended option",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-polish-message",
+      "title": "Polish Slack Or Chat Message",
+      "trigger": "?polish-message",
+      "description": "Refine a Slack, Teams, or chat message while keeping it natural.",
+      "body": "Improve this message so it is clear, natural, and appropriate for work chat.\n\nTone target:\n[professional / friendly / direct / diplomatic]\n\nMessage:\n[PASTE MESSAGE HERE]\n\nRequirements:\n- Keep it human and concise\n- Remove awkward phrasing\n- Preserve the intended meaning\n- If useful, provide a slightly stronger version too\n\nThen provide:\n1. Improved version\n2. Optional stronger version",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-meeting-prep",
+      "title": "Prepare For Meeting",
+      "trigger": "?meeting-prep",
+      "description": "Prepare talking points, risks, and questions before a meeting.",
+      "body": "Help me prepare for this meeting.\n\nContext:\n[Who is involved, what the meeting is about, what outcome you want]\n\nRequirements:\n- Identify the likely goals of the meeting\n- Suggest the most important talking points\n- Include smart questions to ask\n- Highlight risks, objections, or pushback to be ready for\n- Keep it practical and concise\n\nOutput Format:\n1. Meeting objective\n2. Key talking points\n3. Questions to ask\n4. Risks or objections to expect\n5. Best opening approach",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-quick-brief",
+      "title": "Quick Brief",
+      "trigger": "?quick-brief",
+      "description": "Short, decision-useful brief on a topic or problem.",
+      "body": "Prepare a short, decision-useful brief on this topic.\n\nTopic:\n[INSERT TOPIC HERE]\n\nRequirements:\n- Be concise but substantive\n- Focus on what matters most\n- Include key risks, trade-offs, and a recommendation if relevant\n- Avoid fluff\n\nOutput Format:\n1. Situation summary\n2. What matters most\n3. Key risks or trade-offs\n4. Recommendation",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    }
+  ]
+}

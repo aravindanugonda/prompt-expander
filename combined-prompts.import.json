@@ -1,0 +1,365 @@
+{
+  "version": 1,
+  "snippets": [
+    {
+      "id": "prompt-master-prompt",
+      "title": "Master Prompt",
+      "trigger": "?master-prompt",
+      "description": "Default starting point for serious, high-quality interactions.",
+      "body": "You are a senior domain expert and strategic problem solver.\n\nObjective:\nProvide a rigorous, practical, decision-grade response that can be used in real-world implementation, planning, or analysis.\n\nContext:\n[Describe the environment, business situation, technical landscape, or background]\n\nConstraints:\n- Avoid generic advice\n- Prioritize realism over theory\n- Challenge weak assumptions instead of agreeing by default\n- Prefer actionable guidance over high-level commentary\n- Minimize unnecessary complexity\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Explicitly identify assumptions, including hidden ones\n- Surface non-obvious dependencies and constraints\n- Compare multiple viable approaches where applicable\n- Highlight trade-offs clearly\n- Call out what is likely to fail in real-world execution\n- Recommend a practical path, not just possible paths\n\nOutput Format:\n1. Key assumptions\n2. Problem framing\n3. Viable approaches\n4. Detailed analysis\n5. Trade-offs and decision criteria\n6. Risks and failure modes\n7. Recommended approach\n8. Practical next steps",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-deep-technical-analysis",
+      "title": "Deep Technical Analysis Prompt",
+      "trigger": "?deep-tech-analysis",
+      "description": "Rigorous engineering and architecture analysis.",
+      "body": "You are a senior technical architect and systems engineer.\n\nObjective:\nCritically evaluate the issue from a production-grade engineering perspective.\n\nContext:\n[Describe the system, platform, architecture, or implementation details]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Do NOT agree by default\n- Break the problem into distinct technical dimensions\n- Identify where the idea is partially valid and where it breaks down\n- Call out hidden implementation complexity\n- Distinguish theoretical feasibility from operational viability\n- Explicitly identify edge cases, failure modes, and performance implications\n- Recommend realistic alternatives where appropriate\n\nOutput Format:\n1. What is valid\n2. Where the approach breaks down\n3. Hidden complexities\n4. Real-world failure scenarios\n5. Alternative strategies\n6. Recommended path based on risk, effort, and maintainability",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-structured-analysis",
+      "title": "Structured Analysis Prompt",
+      "trigger": "?structured-analysis",
+      "description": "Disciplined, practical analysis instead of a casual answer.",
+      "body": "Analyze this systematically and practically.\n\nContext:\n[Provide the relevant background]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Be explicit, not vague\n- Separate facts, assumptions, risks, and recommendations\n- Do not skip trade-offs\n- Do not give generic \"best practices\" unless directly justified\n\nOutput Format:\n1. Objective summary\n2. Key variables and dependencies\n3. Constraints and risks\n4. Likely scenarios or interpretations\n5. Recommended action\n6. Why this recommendation is strongest",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-decision-making",
+      "title": "Decision-Making Prompt",
+      "trigger": "?decision-making",
+      "description": "Decision-grade comparison across competing options.",
+      "body": "You are an expert advisor helping evaluate competing options.\n\nDecision to make:\n[Describe the decision]\n\nOptions:\n- [Option A]\n- [Option B]\n- [Option C]\n\nContext:\n[Describe your constraints, priorities, and operating environment]\n\nRequirements:\n- Define the decision criteria first\n- Compare each option against the same criteria\n- Highlight short-term vs long-term trade-offs\n- Identify hidden costs and second-order effects\n- Recommend the best option based on the stated context\n- If priorities are unclear, infer likely priorities and state the assumptions\n\nOutput Format:\n1. Decision criteria\n2. Evaluation of each option\n3. Trade-offs\n4. What is likely to go wrong with each option\n5. Recommended decision\n6. Why this is the best fit",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-research-synthesis",
+      "title": "Research And Synthesis Prompt",
+      "trigger": "?research-synthesis",
+      "description": "Synthesize notes, documents, and ideas into insight.",
+      "body": "Synthesize the material I provide into a clear, high-value output.\n\nObjective:\nExtract what matters, remove noise, and produce a concise but insightful synthesis.\n\nTask:\n[INSERT YOUR REQUEST HERE]\n\nRequirements:\n- Extract the most important ideas\n- Remove repetition and low-signal detail\n- Distinguish facts, interpretations, and open questions\n- Identify patterns, contradictions, and implications\n- Produce insight, not just compression\n\nOutput Format:\n1. Core takeaway\n2. Key insights\n3. Important patterns or contradictions\n4. What matters most\n5. Open questions\n6. Practical implications",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-summarization",
+      "title": "Summarization Prompt",
+      "trigger": "?summarize-material",
+      "description": "High-signal summaries for documents, meetings, and notes.",
+      "body": "Summarize the material below for maximum usefulness and minimum fluff.\n\nRequirements:\n- Keep it concise and information-dense\n- Preserve important nuance\n- Remove repetition\n- Extract decisions, action items, unresolved issues, and key facts\n- Preserve technical terms where relevant\n\nOutput Format:\n1. Executive summary\n2. Key points\n3. Decisions made\n4. Action items\n5. Open issues or unresolved questions",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-writing-improvement",
+      "title": "Writing Improvement Prompt",
+      "trigger": "?improve-writing",
+      "description": "Sharpen writing without changing the intended meaning.",
+      "body": "Improve the writing below.\n\nObjective:\nMake it clearer, sharper, more persuasive, and easier to follow without changing the intended meaning.\n\nContext:\n- Audience: [audience]\n- Tone: [tone]\n- Purpose: [purpose]\n\nRequirements:\n- Keep the original meaning intact\n- Remove unnecessary words\n- Improve structure and flow\n- Make the wording more precise\n- Preserve the intended tone\n\nThen provide:\n1. Improved version\n2. Biggest changes made\n3. Optional stronger alternative if the message should be more direct",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-critique-review",
+      "title": "Critique And Review Prompt",
+      "trigger": "?critique-review",
+      "description": "Stress-test a plan, argument, draft, or idea.",
+      "body": "Critique this rigorously.\n\nObjective:\nIdentify weaknesses, hidden assumptions, risks, and stronger alternatives.\n\nTask:\n[INSERT THE IDEA, PLAN, OR DRAFT]\n\nRequirements:\n- Do not default to agreement\n- Look for logical gaps, weak assumptions, and missing constraints\n- Identify likely objections and practical risks\n- Point out what sounds good in theory but may fail in execution\n- Recommend stronger alternatives where appropriate\n\nOutput Format:\n1. Strongest parts\n2. Weakest parts\n3. What is missing\n4. Key risks or failure modes\n5. Most important improvements\n6. Revised recommendation",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-problem-solving",
+      "title": "Problem-Solving Prompt",
+      "trigger": "?solve-problem",
+      "description": "Practical solution path focused on execution.",
+      "body": "Help me solve this problem efficiently and correctly.\n\nProblem:\n[INSERT THE PROBLEM]\n\nContext:\n[Relevant constraints, systems, deadlines, or dependencies]\n\nRequirements:\n- Define the problem clearly\n- Identify likely root causes or underlying blockers\n- Recommend the most effective solution\n- Mention 1-2 viable alternatives\n- Explain why the recommended path is strongest\n- Give concrete next steps in order\n- Optimize for execution, not theoretical completeness\n\nOutput Format:\n1. Problem definition\n2. Root cause analysis\n3. Recommended solution\n4. Alternatives considered\n5. Risks and trade-offs\n6. Ordered next steps",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-debugging",
+      "title": "Debugging Prompt",
+      "trigger": "?debug-rigorously",
+      "description": "Troubleshooting prompt for technical issues and regressions.",
+      "body": "Act as a rigorous debugger.\n\nObjective:\nIdentify the most likely root cause and the fastest path to isolate and fix the problem.\n\nContext:\n[System details, errors, symptoms, environment, recent changes]\n\nTask:\n[INSERT THE ISSUE]\n\nRequirements:\n- Rank likely causes by probability\n- Avoid scattered generic suggestions\n- Explain how to validate or eliminate each likely cause\n- Prioritize the fastest high-signal debugging path\n- Recommend a fix once the most likely cause is clear\n- Call out misleading symptoms if applicable\n\nOutput Format:\n1. Most likely causes ranked\n2. Why each is plausible\n3. Fastest validation steps\n4. Recommended fix path\n5. Residual risks or follow-up checks",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-coding",
+      "title": "Coding Prompt",
+      "trigger": "?coding-prompt",
+      "description": "Implementation and code review prompt for maintainable solutions.",
+      "body": "Act as a senior software engineer.\n\nObjective:\nProvide a correct, maintainable, production-minded solution.\n\nContext:\n[Language, framework, environment, constraints, codebase expectations]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Clarify the goal and assumptions\n- Prefer simple and robust solutions over clever ones\n- Call out edge cases and failure modes\n- Explain trade-offs in maintainability, complexity, and performance\n- If writing code, make it readable and production-minded\n- Suggest tests or validation steps where relevant\n\nOutput Format:\n1. Recommended approach\n2. Trade-offs\n3. Code or pseudocode\n4. Validation strategy\n5. Risks or caveats",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-learning",
+      "title": "Learning Prompt",
+      "trigger": "?teach-topic",
+      "description": "Learn a topic for understanding rather than memorization.",
+      "body": "Teach me this in a way that maximizes understanding, not memorization.\n\nTopic:\n[INSERT TOPIC]\n\nMy level:\n[beginner / intermediate / advanced]\n\nRequirements:\n- Start with intuition\n- Explain the core concepts clearly\n- Build toward deeper technical detail\n- Use a practical example\n- Point out common misconceptions\n- End with a short mental model I can remember\n\nOutput Format:\n1. Intuition\n2. Core explanation\n3. Example\n4. Common mistakes\n5. Mental model",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-brainstorming",
+      "title": "Brainstorming Prompt",
+      "trigger": "?brainstorm-ideas",
+      "description": "Generate strong, grounded ideas instead of filler.",
+      "body": "Brainstorm strong, non-generic ideas for this goal:\n[INSERT GOAL]\n\nContext:\n[Constraints, audience, budget, timeline, environment]\n\nRequirements:\n- Prioritize originality and usefulness\n- Avoid obvious filler ideas\n- Include a mix of safe, ambitious, and unconventional options\n- Keep the ideas grounded in the stated constraints\n- For the best ideas, explain why they stand out\n\nOutput Format:\n1. Top ideas\n2. Why each is promising\n3. Best ideas to test first\n4. Recommended next step",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-planning",
+      "title": "Planning Prompt",
+      "trigger": "?execution-plan",
+      "description": "Execution planning prompt with phases, blockers, and risks.",
+      "body": "Create a practical execution plan for this objective:\n[INSERT OBJECTIVE]\n\nContext:\n[Environment, constraints, deadline, dependencies]\n\nRequirements:\n- State the goal clearly\n- Break the work into major phases\n- Sequence the steps in realistic order\n- Identify dependencies and blockers\n- Include risks and mitigations\n- Be practical, not idealized\n\nOutput Format:\n1. Goal\n2. Major phases\n3. Ordered steps\n4. Dependencies and blockers\n5. Risks and mitigations\n6. What to do first",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-brutal-risk-assessment",
+      "title": "Brutal Risk Assessment Prompt",
+      "trigger": "?brutal-risk-check",
+      "description": "Brutally honest assessment before major commitments.",
+      "body": "You are a senior advisor brought in to identify why this plan could fail.\n\nObjective:\nPerform a brutally honest assessment focused on execution reality, not theory.\n\nContext:\n[Describe the initiative, architecture, project, migration, or plan]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Do NOT soften risks\n- Focus on real-world failure points\n- Include technical, operational, organizational, and skill-related risks\n- Call out hidden dependencies most teams miss\n- Identify where timelines and estimates are likely to fail\n- Recommend practical mitigations\n\nOutput Format:\n1. Top technical risks\n2. Hidden dependencies\n3. Operational and organizational risks\n4. Timeline and estimation risks\n5. What is likely to go wrong in production\n6. Mitigation strategies",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-performance-reality-check",
+      "title": "Performance Reality Check Prompt",
+      "trigger": "?performance-reality",
+      "description": "Challenge performance assumptions and design validation steps.",
+      "body": "You are a performance engineering expert.\n\nObjective:\nIdentify where performance assumptions are likely to break down and how to validate them.\n\nContext:\n[System, workload, architecture, scale assumptions, performance goals]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Identify the key performance assumptions\n- Distinguish between theoretical and observed behavior\n- Separate batch, online, interactive, or concurrent workloads if relevant\n- Identify likely bottlenecks\n- Recommend a realistic testing and tuning strategy\n- Highlight failure areas under scale\n\nOutput Format:\n1. Key performance assumptions\n2. Where they break down\n3. Bottleneck analysis\n4. Validation and testing strategy\n5. Tuning recommendations\n6. Risk areas under scale",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-architecture-design",
+      "title": "Architecture Design Prompt",
+      "trigger": "?architecture-design",
+      "description": "Production-grade architecture recommendation prompt.",
+      "body": "You are a senior enterprise architect.\n\nObjective:\nDesign a production-grade architecture that is realistic, supportable, and aligned to constraints.\n\nContext:\n[Describe the platform, workloads, constraints, compliance needs, scale, and operating model]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Avoid generic architecture diagrams in prose form\n- Be explicit about components and their roles\n- Explain why each major choice is being made\n- Cover scalability, availability, observability, and operations\n- Highlight cost and complexity trade-offs\n- Call out what will be difficult in implementation\n\nOutput Format:\n1. Architecture overview\n2. Component-by-component design\n3. Operational model\n4. Availability and failure handling\n5. Risks and trade-offs\n6. Recommended architecture",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-assumption-check",
+      "title": "Assumption-Check Prompt",
+      "trigger": "?assumption-check",
+      "description": "Challenge the question's assumptions before answering.",
+      "body": "Before answering, challenge the assumptions behind this request.\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Identify explicit assumptions\n- Identify hidden assumptions\n- Separate what is likely true from what may be misleading\n- Explain how the answer changes if the assumptions are wrong\n- Then provide the best answer under the most realistic interpretation\n\nOutput Format:\n1. Explicit assumptions\n2. Hidden assumptions\n3. Which assumptions are weak\n4. Reframed problem statement\n5. Best answer under the corrected framing",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-executive-brief",
+      "title": "Executive Brief Prompt",
+      "trigger": "?executive-brief",
+      "description": "Concise, decision-grade brief for leadership or stakeholders.",
+      "body": "Prepare an executive-grade brief.\n\nObjective:\nProduce a concise summary with enough substance to support decision-making.\n\nContext:\n[Describe the topic, decision, initiative, or problem]\n\nTask:\n[INSERT YOUR REQUEST HERE]\n\nRequirements:\n- Be concise but substantive\n- Focus on what matters for decisions\n- Include key trade-offs, major risks, and a recommendation\n- Avoid unnecessary technical detail unless it changes the decision\n\nOutput Format:\n1. Situation summary\n2. What matters most\n3. Options or scenarios\n4. Risks\n5. Recommendation\n6. Immediate next step",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-best-possible-answer",
+      "title": "Best-Possible Answer Prompt",
+      "trigger": "?best-possible-answer",
+      "description": "Optimize for answer quality over speed.",
+      "body": "I want your best possible answer, not your fastest answer.\n\nApproach this carefully and at expert level.\n\nRequirements:\n- Fully understand the request before answering\n- Surface hidden assumptions\n- Consider alternatives and edge cases\n- Prefer depth where it matters and brevity where it does not\n- Be explicit about uncertainty\n- Give a final answer that is well-reasoned, practical, and defensible\n- If a better structure would improve the answer, use it\n\nTask:\n[INSERT YOUR QUESTION HERE]",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-addon-rigor",
+      "title": "Add-On: More Rigor",
+      "trigger": "?addon-rigor",
+      "description": "Add-on line for stronger rigor.",
+      "body": "Do not default to agreement. Challenge weak assumptions and surface what could fail in execution.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-addon-depth",
+      "title": "Add-On: More Depth",
+      "trigger": "?addon-depth",
+      "description": "Add-on line for deeper analysis.",
+      "body": "Do not stop at the obvious answer. Push to the most useful and defensible conclusion.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-addon-actionability",
+      "title": "Add-On: More Actionability",
+      "trigger": "?addon-actionability",
+      "description": "Add-on line for clearer next steps.",
+      "body": "End with concrete next steps that can be acted on immediately.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-addon-less-fluff",
+      "title": "Add-On: Less Fluff",
+      "trigger": "?addon-less-fluff",
+      "description": "Add-on line for concise, high-signal answers.",
+      "body": "Keep the answer concise, information-dense, and free of generic advice.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-addon-comparison",
+      "title": "Add-On: Comparison",
+      "trigger": "?addon-compare-options",
+      "description": "Add-on line for direct option comparison.",
+      "body": "If there are multiple viable approaches, compare them directly and recommend the strongest option.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-addon-realism",
+      "title": "Add-On: Realism",
+      "trigger": "?addon-realism",
+      "description": "Add-on line for production realism.",
+      "body": "Distinguish what is theoretically possible from what is realistic in production.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-simple-reusable-starter",
+      "title": "Simple Reusable Starter",
+      "trigger": "?simple-high-signal",
+      "description": "Compact prompt for everyday high-quality responses.",
+      "body": "Give a rigorous, practical, high-signal answer. State assumptions, challenge weak reasoning, compare viable options where relevant, highlight trade-offs, and end with a clear recommendation.",
+      "createdAt": "2026-04-05T16:10:00.000Z",
+      "updatedAt": "2026-04-05T16:10:00.000Z"
+    },
+    {
+      "id": "prompt-mainframe-modernization-expert",
+      "title": "Mainframe Modernization Expert",
+      "trigger": "?mainframe-modernization-expert",
+      "description": "Legacy mainframe to commodity and cloud modernization with Rocket or Micro Focus Enterprise Server expertise.",
+      "body": "You are a Mainframe Modernization Expert with decades of experience helping customers migrate legacy mainframe systems to distributed and cloud environments.\n\nExpertise:\n- Mainframe modernization into commodity platforms and cloud platforms\n- AWS services and cloud architecture\n- Python, PowerShell, Windows Command, and Shell scripting on Linux\n- Rocket Software and Micro Focus Enterprise Server products and related tooling\n\nOperating expectations:\n- Be comprehensive and detailed\n- Be thoughtful and deliberate before answering\n- Prioritize accuracy, reliability, and actionability\n- Avoid superficial or rushed replies\n- Fully address the question so follow-up clarification is minimized\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nContext:\n[Describe the current mainframe environment, application stack, migration goals, constraints, timelines, and target platform]\n\nRequirements:\n- Identify assumptions explicitly\n- Separate application, data, batch, integration, operations, and platform concerns\n- Distinguish what is technically possible from what is practical in production\n- Call out migration risks, blockers, dependencies, and likely failure modes\n- Be specific about Rocket or Micro Focus Enterprise Server considerations where relevant\n- Be specific about AWS service choices where relevant\n- Include concrete implementation guidance, not just conceptual advice\n- Recommend the strongest path based on realism, maintainability, and migration risk\n\nOutput Format:\n1. Situation assessment\n2. Key assumptions and dependencies\n3. Modernization options\n4. Detailed technical analysis\n5. Rocket or Micro Focus Enterprise Server considerations\n6. AWS or target platform design guidance\n7. Risks and failure modes\n8. Recommended approach\n9. Ordered next steps",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "prompt-aws-solutions-architect-professional",
+      "title": "AWS Solutions Architect Professional",
+      "trigger": "?aws-architect-pro",
+      "description": "Production-minded AWS architecture, trade-off, and migration guidance.",
+      "body": "Act as an AWS Solutions Architect Professional.\n\nObjective:\nProvide production-grade AWS architecture guidance that is realistic, supportable, secure, and cost-aware.\n\nContext:\n[Describe the workloads, scale, constraints, compliance needs, availability targets, current state, and business goals]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Think like a senior architect, not a product brochure\n- Be explicit about AWS services and why each is being chosen\n- Cover security, networking, availability, scalability, observability, and cost\n- Identify trade-offs and what becomes operationally difficult\n- Call out migration complexity, hidden dependencies, and failure modes\n- Distinguish quick wins from long-term architecture choices\n- Recommend a practical target architecture and rollout path\n\nOutput Format:\n1. Problem framing\n2. Assumptions and constraints\n3. Recommended AWS architecture\n4. Service-by-service rationale\n5. Security and operational considerations\n6. Trade-offs and alternatives\n7. Risks and failure modes\n8. Recommended rollout plan",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "prompt-linux-kernel-engineer",
+      "title": "Linux Kernel Engineer",
+      "trigger": "?linux-kernel-engineer",
+      "description": "Deep systems-level prompt for kernel internals, debugging, and performance analysis.",
+      "body": "Act as a senior Linux Kernel Engineer.\n\nObjective:\nProvide a rigorous systems-level answer grounded in kernel behavior, debugging reality, and production impact.\n\nContext:\n[Describe the Linux distribution, kernel version, hardware, workload, logs, symptoms, subsystems involved, and recent changes]\n\nTask:\n[INSERT YOUR QUESTION HERE]\n\nRequirements:\n- Reason from first principles where needed\n- Separate user-space symptoms from kernel-space causes\n- Call out relevant subsystems such as scheduling, memory management, filesystems, networking, drivers, interrupts, locking, or tracing when applicable\n- Identify likely root causes, edge cases, and failure modes\n- Recommend concrete debugging steps using the right Linux tools and observability techniques\n- Distinguish what is a hypothesis versus what is strongly supported by the evidence\n- Prefer practical, reproducible guidance over vague theory\n\nOutput Format:\n1. Problem framing\n2. Most likely causes or mechanisms\n3. Relevant kernel subsystems\n4. Fastest high-signal debugging steps\n5. Recommended fix or mitigation path\n6. Risks, caveats, and follow-up validation",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-high-signal-answer",
+      "title": "Everyday High-Signal Answer",
+      "trigger": "?everyday-answer",
+      "description": "Compact everyday prompt for practical, high-quality answers.",
+      "body": "Give a practical, high-signal answer. State the key assumptions, avoid generic filler, highlight any important trade-offs, and end with a clear recommendation.",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-email-draft",
+      "title": "Draft Professional Email",
+      "trigger": "?draft-email",
+      "description": "Write a clear professional email from rough context.",
+      "body": "Draft a professional email.\n\nContext:\n[Who it is to, what it is about, and what outcome you want]\n\nRequirements:\n- Keep it clear and natural\n- Match a professional but human tone\n- Avoid unnecessary length\n- Include a clear ask or next step if relevant\n\nThen provide:\n1. Subject line\n2. Email draft\n3. Shorter version if useful",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-rewrite-concise",
+      "title": "Rewrite More Clearly",
+      "trigger": "?rewrite-clearly",
+      "description": "Rewrite text to be clearer and more concise.",
+      "body": "Rewrite the text below to make it clearer, tighter, and easier to follow.\n\nRequirements:\n- Keep the meaning intact\n- Remove unnecessary words\n- Improve structure and flow\n- Preserve the intended tone unless I ask otherwise\n\nText:\n[PASTE TEXT HERE]\n\nThen provide:\n1. Improved version\n2. Biggest changes made",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-summarize-thread",
+      "title": "Summarize Thread",
+      "trigger": "?summarize-thread",
+      "description": "Summarize an email thread, chat, or notes into what matters.",
+      "body": "Summarize this for usefulness, not fluff.\n\nRequirements:\n- Keep it concise and information-dense\n- Capture the main point, decisions, action items, and unresolved questions\n- Remove repetition and low-value detail\n\nMaterial:\n[PASTE MATERIAL HERE]\n\nOutput Format:\n1. Executive summary\n2. Key points\n3. Action items\n4. Open issues",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-explain-simply",
+      "title": "Explain Simply",
+      "trigger": "?explain-simply",
+      "description": "Explain a topic clearly without dumbing it down too much.",
+      "body": "Explain this clearly and simply.\n\nTopic:\n[INSERT TOPIC HERE]\n\nRequirements:\n- Start with intuition\n- Use plain language first\n- Add technical detail only where it helps understanding\n- Include one concrete example\n- End with a short summary I can remember",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-action-plan",
+      "title": "Turn Into Action Plan",
+      "trigger": "?action-plan",
+      "description": "Convert a goal or messy notes into concrete next steps.",
+      "body": "Turn this into an actionable plan.\n\nGoal or notes:\n[PASTE HERE]\n\nRequirements:\n- Clarify the goal first if needed\n- Break the work into practical steps\n- Put the steps in the right order\n- Call out blockers or dependencies\n- Keep it execution-focused\n\nOutput Format:\n1. Goal\n2. Ordered steps\n3. Dependencies or blockers\n4. What to do first",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-compare-options",
+      "title": "Compare Two Or Three Options",
+      "trigger": "?compare-options",
+      "description": "Quick side-by-side option comparison with a recommendation.",
+      "body": "Compare these options and recommend the strongest one.\n\nOptions:\n- [Option A]\n- [Option B]\n- [Option C if needed]\n\nContext:\n[Constraints, priorities, budget, timeline, or other factors]\n\nRequirements:\n- Use the same criteria for each option\n- Highlight practical trade-offs\n- Identify hidden costs or risks\n- Recommend the best fit for the stated context\n\nOutput Format:\n1. Comparison criteria\n2. Evaluation of each option\n3. Trade-offs\n4. Recommended option",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-polish-message",
+      "title": "Polish Slack Or Chat Message",
+      "trigger": "?polish-message",
+      "description": "Refine a Slack, Teams, or chat message while keeping it natural.",
+      "body": "Improve this message so it is clear, natural, and appropriate for work chat.\n\nTone target:\n[professional / friendly / direct / diplomatic]\n\nMessage:\n[PASTE MESSAGE HERE]\n\nRequirements:\n- Keep it human and concise\n- Remove awkward phrasing\n- Preserve the intended meaning\n- If useful, provide a slightly stronger version too\n\nThen provide:\n1. Improved version\n2. Optional stronger version",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-meeting-prep",
+      "title": "Prepare For Meeting",
+      "trigger": "?meeting-prep",
+      "description": "Prepare talking points, risks, and questions before a meeting.",
+      "body": "Help me prepare for this meeting.\n\nContext:\n[Who is involved, what the meeting is about, what outcome you want]\n\nRequirements:\n- Identify the likely goals of the meeting\n- Suggest the most important talking points\n- Include smart questions to ask\n- Highlight risks, objections, or pushback to be ready for\n- Keep it practical and concise\n\nOutput Format:\n1. Meeting objective\n2. Key talking points\n3. Questions to ask\n4. Risks or objections to expect\n5. Best opening approach",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    },
+    {
+      "id": "everyday-quick-brief",
+      "title": "Quick Brief",
+      "trigger": "?quick-brief",
+      "description": "Short, decision-useful brief on a topic or problem.",
+      "body": "Prepare a short, decision-useful brief on this topic.\n\nTopic:\n[INSERT TOPIC HERE]\n\nRequirements:\n- Be concise but substantive\n- Focus on what matters most\n- Include key risks, trade-offs, and a recommendation if relevant\n- Avoid fluff\n\nOutput Format:\n1. Situation summary\n2. What matters most\n3. Key risks or trade-offs\n4. Recommendation",
+      "createdAt": "2026-04-05T16:25:00.000Z",
+      "updatedAt": "2026-04-05T16:25:00.000Z"
+    }
+  ]
+}
