@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt Expander",
+  "version": "0.1.0",
+  "description": "Expand custom triggers like ?use-analyzer-prompt into reusable prompts across chat interfaces and other browser text fields.",
+  "permissions": ["storage", "clipboardRead"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "src/background/index.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "options_page": "src/options/index.html",
+  "commands": {
+    "open-options": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Option+Shift+P"
+      },
+      "description": "Open snippet settings"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/index.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Expander</title>
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/popup.css" />
+  </head>
+  <body>
+    <div class="popup-shell">
+      <div class="popup-hero">
+        <p class="eyebrow">Prompt Expander</p>
+        <h1>Quick prompt lookup</h1>
+        <p class="muted">
+          Type a trigger in ChatGPT or another chat interface, then press space
+          or tab to expand it.
+        </p>
+      </div>
+
+      <label class="field">
+        <span class="field-label">Search</span>
+        <input id="popup-search-input" class="text-input" placeholder="Find a snippet" />
+      </label>
+
+      <div id="popup-snippet-list" class="popup-snippet-list"></div>
+
+      <div class="popup-actions">
+        <button id="open-options-button" class="primary-button">Open settings</button>
+      </div>
+    </div>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+  </html>

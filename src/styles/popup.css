@@ -1,0 +1,46 @@
+body {
+  min-width: 380px;
+  max-width: 420px;
+}
+
+.popup-shell {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.popup-hero,
+.popup-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.popup-hero {
+  padding: 18px;
+}
+
+.popup-hero h1,
+.popup-card h2 {
+  margin: 0;
+}
+
+.popup-snippet-list {
+  display: grid;
+  gap: 12px;
+  max-height: 360px;
+  overflow: auto;
+}
+
+.popup-card {
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.popup-card-actions,
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+}
