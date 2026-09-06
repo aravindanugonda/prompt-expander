@@ -15,6 +15,7 @@ const state = {
 
 const elements = {
   bodyInput: document.querySelector("#body-input"),
+  cancelButton: document.querySelector("#cancel-button"),
   deleteButton: document.querySelector("#delete-button"),
   descriptionInput: document.querySelector("#description-input"),
   editorTitle: document.querySelector("#editor-title"),
@@ -48,7 +49,13 @@ function syncFormFromDraft() {
   elements.triggerInput.value = draft.trigger;
   elements.descriptionInput.value = draft.description;
   elements.bodyInput.value = draft.body;
-  elements.editorTitle.textContent = draft.title || "Create or update a snippet";
+
+  const editing = Boolean(state.selectedSnippetId);
+  elements.editorTitle.textContent = editing
+    ? draft.title || "Edit snippet"
+    : "New snippet";
+  elements.saveButton.textContent = editing ? "Save changes" : "Create snippet";
+  elements.deleteButton.hidden = !editing;
 }
 
 function syncDraftFromForm() {
@@ -144,6 +151,19 @@ async function handleSave() {
   }
 }
 
+function handleCancel() {
+  const selected = getSelectedSnippet();
+
+  if (selected) {
+    draft = { ...selected };
+    syncFormFromDraft();
+    setStatus("Changes reverted.");
+  } else {
+    resetToNewSnippet();
+    setStatus("Cleared the form.");
+  }
+}
+
 async function handleDelete() {
   if (!state.selectedSnippetId) {
     setStatus("Select a saved snippet before deleting it.", "error");
@@ -205,6 +225,7 @@ function wireEvents() {
   });
 
   elements.saveButton.addEventListener("click", handleSave);
+  elements.cancelButton.addEventListener("click", handleCancel);
   elements.deleteButton.addEventListener("click", handleDelete);
   elements.searchInput.addEventListener("input", renderSnippetList);
   elements.exportButton.addEventListener("click", handleExport);
@@ -221,7 +242,7 @@ function wireEvents() {
 async function init() {
   wireEvents();
   await refreshStore();
-  setStatus("Snippets load locally from chrome.storage.local.");
+  setStatus("Pick a snippet to edit, or start a new one.");
 }
 
 void init();

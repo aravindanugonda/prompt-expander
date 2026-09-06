@@ -1,46 +1,70 @@
 body {
+  width: 380px;
   min-width: 380px;
-  max-width: 420px;
 }
 
 .popup-shell {
   display: grid;
-  gap: 16px;
-  padding: 18px;
-}
-
-.popup-hero,
-.popup-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
+  gap: 12px;
+  padding: 14px;
 }
 
 .popup-hero {
-  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 14px 16px;
 }
 
-.popup-hero h1,
-.popup-card h2 {
+.popup-hero h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.05rem;
+}
+
+.popup-hero .muted {
   margin: 0;
+  font-size: 0.82rem;
 }
 
 .popup-snippet-list {
   display: grid;
-  gap: 12px;
-  max-height: 360px;
-  overflow: auto;
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .popup-card {
-  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 14px;
   display: grid;
-  gap: 10px;
+  gap: 6px;
+}
+
+.popup-card h2 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.popup-card code {
+  justify-self: start;
+}
+
+.popup-card .muted {
+  margin: 0;
+  font-size: 0.82rem;
 }
 
 .popup-card-actions,
 .popup-actions {
   display: flex;
   justify-content: flex-end;
+}
+
+.popup-actions .primary-button {
+  width: 100%;
 }

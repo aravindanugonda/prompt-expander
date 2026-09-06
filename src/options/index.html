@@ -9,94 +9,99 @@
   </head>
   <body>
     <div class="options-shell">
-      <aside class="sidebar">
-        <div class="brand-card">
+      <header class="topbar">
+        <div class="brand">
           <p class="eyebrow">Prompt Expander (&gt;_)</p>
           <h1>Reusable prompts for chat tools</h1>
-          <p class="muted">
-            Type a trigger like <code>&gt;_use-analyzer-prompt</code> in supported
-            text fields, then press space or tab to expand it.
+          <p class="brand-hint muted">
+            Type a trigger like <code>&gt;_use-analyzer-prompt</code> in a text
+            field, then press space or tab to expand it.
           </p>
-          <div class="sidebar-actions">
-            <button id="new-snippet-button" class="primary-button">New snippet</button>
-            <button id="export-button" class="secondary-button">Export JSON</button>
-            <button id="import-button" class="secondary-button">Import JSON</button>
-            <input id="import-file-input" type="file" accept="application/json" hidden />
-          </div>
         </div>
-
-        <div class="list-card">
-          <label class="field-label" for="search-input">Search snippets</label>
-          <input id="search-input" class="text-input" placeholder="Filter by title or trigger" />
-          <div id="snippet-list" class="snippet-list"></div>
+        <div class="topbar-actions">
+          <button id="new-snippet-button" class="primary-button">New snippet</button>
+          <button id="import-button" class="secondary-button">Import</button>
+          <button id="export-button" class="secondary-button">Export</button>
+          <input id="import-file-input" type="file" accept="application/json" hidden />
         </div>
-      </aside>
+      </header>
 
-      <main class="editor-pane">
-        <section class="panel">
-          <div class="panel-header">
-            <div>
-              <p class="eyebrow">Snippet editor</p>
-              <h2 id="editor-title">Create or update a snippet</h2>
-            </div>
-            <div class="panel-actions">
-              <button id="delete-button" class="danger-button">Delete</button>
-              <button id="save-button" class="primary-button">Save snippet</button>
-            </div>
+      <div class="columns">
+        <aside class="sidebar">
+          <div class="list-card">
+            <label class="field-label" for="search-input">Search snippets</label>
+            <input id="search-input" class="text-input" placeholder="Filter by title or trigger" />
+            <div id="snippet-list" class="snippet-list"></div>
           </div>
+        </aside>
 
-          <div id="status-banner" class="status-banner" aria-live="polite"></div>
+        <main class="editor-pane">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Snippet editor</p>
+                <h2 id="editor-title">Create or update a snippet</h2>
+              </div>
+              <div class="panel-actions">
+                <button id="cancel-button" class="ghost-button">Cancel</button>
+                <button id="delete-button" class="danger-button" hidden>Delete</button>
+                <button id="save-button" class="primary-button">Save snippet</button>
+              </div>
+            </div>
 
-          <form id="snippet-form" class="snippet-form">
-            <label class="field">
-              <span class="field-label">Title</span>
-              <input id="title-input" class="text-input" maxlength="120" />
-            </label>
+            <div id="status-banner" class="status-banner" aria-live="polite"></div>
 
-            <label class="field">
-              <span class="field-label">Trigger</span>
-              <input id="trigger-input" class="text-input" maxlength="120" />
-            </label>
+            <form id="snippet-form" class="snippet-form">
+              <label class="field">
+                <span class="field-label">Title</span>
+                <input id="title-input" class="text-input" maxlength="120" />
+              </label>
 
-            <label class="field">
-              <span class="field-label">Description</span>
-              <input id="description-input" class="text-input" maxlength="180" />
-            </label>
+              <label class="field">
+                <span class="field-label">Trigger</span>
+                <input id="trigger-input" class="text-input" maxlength="120" />
+              </label>
 
-            <label class="field">
-              <span class="field-label">Body</span>
-              <textarea
-                id="body-input"
-                class="textarea-input"
-                rows="14"
-                placeholder="Write the text you want inserted when the trigger expands."
-              ></textarea>
-            </label>
-          </form>
-        </section>
+              <label class="field">
+                <span class="field-label">Description</span>
+                <input id="description-input" class="text-input" maxlength="180" />
+              </label>
 
-        <section class="panel info-grid">
-          <article class="info-card">
-            <p class="eyebrow">Supported tokens</p>
-            <ul class="token-list">
-              <li><code>${date}</code> inserts today as <code>YYYY-MM-DD</code>.</li>
-              <li><code>${clipboard}</code> inserts the current clipboard text.</li>
-              <li><code>${input:name}</code> prompts for a value at expansion time.</li>
-              <li><code>${cursor}</code> places the caret after the snippet expands.</li>
-            </ul>
-          </article>
+              <label class="field">
+                <span class="field-label">Body</span>
+                <textarea
+                  id="body-input"
+                  class="textarea-input"
+                  rows="14"
+                  placeholder="Write the text you want inserted when the trigger expands."
+                ></textarea>
+              </label>
+            </form>
+          </section>
 
-          <article class="info-card">
-            <p class="eyebrow">How expansion works</p>
-            <ul class="token-list">
-              <li>Works in <code>input</code>, <code>textarea</code>, and basic <code>contenteditable</code> fields.</li>
-              <li>Press <code>space</code> to expand and keep the space.</li>
-              <li>Press <code>tab</code> to expand without adding a tab character.</li>
-              <li>Best fit today: chat interfaces like ChatGPT, Claude, Gemini, and similar editors.</li>
-            </ul>
-          </article>
-        </section>
-      </main>
+          <section class="info-grid">
+            <article class="info-card">
+              <p class="eyebrow">Supported tokens</p>
+              <ul class="token-list">
+                <li><code>${date}</code> inserts today as <code>YYYY-MM-DD</code>.</li>
+                <li><code>${clipboard}</code> inserts the current clipboard text.</li>
+                <li><code>${input:name}</code> prompts for a value at expansion time.</li>
+                <li><code>${cursor}</code> places the caret after the snippet expands.</li>
+              </ul>
+            </article>
+
+            <article class="info-card">
+              <p class="eyebrow">How expansion works</p>
+              <ul class="token-list">
+                <li>Works in <code>input</code>, <code>textarea</code>, and basic <code>contenteditable</code> fields.</li>
+                <li>Press <code>space</code> to expand and keep the space.</li>
+                <li>Press <code>tab</code> to expand without adding a tab character.</li>
+                <li>Best fit today: chat interfaces like ChatGPT, Claude, Gemini, and similar editors.</li>
+              </ul>
+            </article>
+          </section>
+        </main>
+      </div>
     </div>
 
     <script type="module" src="./index.js"></script>

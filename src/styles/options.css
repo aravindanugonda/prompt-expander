@@ -1,105 +1,160 @@
 body {
-  padding: 28px;
+  padding: 24px;
 }
 
 .options-shell {
+  max-width: 1180px;
+  margin: 0 auto;
   display: grid;
-  gap: 24px;
-  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 20px;
 }
 
-.sidebar,
+/* ---- Top bar ---------------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 18px 22px;
+}
+
+.topbar .brand {
+  min-width: 240px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.topbar .brand-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.86rem;
+  max-width: 52ch;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---- Two-column body ------------------------------------------------- */
+
+.columns {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
 .editor-pane {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   align-content: start;
 }
 
-.brand-card,
 .list-card,
 .panel {
   background: var(--panel);
-  backdrop-filter: blur(14px);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
 }
 
-.brand-card,
-.list-card,
-.panel {
-  padding: 22px;
-}
-
-.brand-card h1,
-.panel h2 {
-  margin: 0;
-  line-height: 1.05;
-}
-
-.brand-card h1 {
-  font-size: 2rem;
-  max-width: 10ch;
-}
-
-.sidebar-actions,
-.panel-actions {
-  display: flex;
-  flex-wrap: wrap;
+.list-card {
+  display: grid;
   gap: 12px;
-}
-
-.sidebar-actions {
-  margin-top: 1.25rem;
 }
 
 .snippet-list {
   display: grid;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 8px;
+  overflow-y: auto;
+  min-height: 200px;
+  max-height: calc(100vh - 220px);
+  padding-right: 4px;
 }
 
 .snippet-list-item {
   display: grid;
-  gap: 4px;
+  gap: 3px;
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
   color: inherit;
-  padding: 14px;
+  padding: 11px 12px;
   text-align: left;
   cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.snippet-list-item:hover {
+  border-color: var(--line-strong);
+  background: var(--panel-muted);
 }
 
 .snippet-list-item.is-active {
-  border-color: rgba(204, 95, 43, 0.45);
+  border-color: var(--accent);
   background: var(--accent-soft);
 }
 
 .snippet-title {
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 0.92rem;
 }
 
-.snippet-trigger,
+.snippet-trigger {
+  color: var(--accent-strong);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+}
+
 .snippet-description {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 0.85rem;
+}
+
+/* ---- Editor panel -------------------------------------------------- */
+
+.panel h2 {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
 .panel-header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   align-items: start;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 8px;
 }
 
 .status-banner {
-  min-height: 24px;
-  margin-bottom: 10px;
+  min-height: 20px;
+  margin-bottom: 12px;
+  font-size: 0.86rem;
   font-weight: 600;
+  color: var(--muted);
 }
 
 .status-banner[data-tone="success"] {
@@ -112,36 +167,57 @@ body {
 
 .snippet-form {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
+
+/* ---- Info cards -------------------------------------------------- */
 
 .info-grid {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 .info-card {
-  background: var(--panel-strong);
+  background: var(--panel-muted);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  padding: 18px;
+  padding: 16px;
 }
 
 .token-list {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: 1.1rem;
   display: grid;
-  gap: 10px;
+  gap: 8px;
+  font-size: 0.88rem;
 }
 
-@media (max-width: 960px) {
+/* ---- Responsive ------------------------------------------------- */
+
+@media (max-width: 900px) {
   body {
-    padding: 16px;
+    padding: 14px;
   }
 
-  .options-shell,
+  .columns,
   .info-grid {
     grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .snippet-list {
+    max-height: 320px;
+  }
+
+  .topbar-actions {
+    flex-wrap: wrap;
   }
 }
