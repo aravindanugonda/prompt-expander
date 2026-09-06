@@ -4,9 +4,11 @@ body {
 }
 
 .popup-shell {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   padding: 14px;
+  height: 540px;
 }
 
 .popup-hero {
@@ -27,12 +29,23 @@ body {
   font-size: 0.82rem;
 }
 
+.popup-shell > .field {
+  flex: none;
+}
+
 .popup-snippet-list {
+  flex: 1 1 auto;
+  min-height: 0;
   display: grid;
   gap: 10px;
-  max-height: 340px;
+  align-content: start;
   overflow-y: auto;
   padding-right: 4px;
+}
+
+.popup-hero,
+.popup-actions {
+  flex: none;
 }
 
 .popup-card {

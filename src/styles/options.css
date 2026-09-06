@@ -149,22 +149,6 @@ body {
   gap: 8px;
 }
 
-.status-banner {
-  min-height: 20px;
-  margin-bottom: 12px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.status-banner[data-tone="success"] {
-  color: var(--success);
-}
-
-.status-banner[data-tone="error"] {
-  color: var(--danger);
-}
-
 .snippet-form {
   display: grid;
   gap: 14px;

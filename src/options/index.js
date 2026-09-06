@@ -15,7 +15,6 @@ const state = {
 
 const elements = {
   bodyInput: document.querySelector("#body-input"),
-  cancelButton: document.querySelector("#cancel-button"),
   deleteButton: document.querySelector("#delete-button"),
   descriptionInput: document.querySelector("#description-input"),
   editorTitle: document.querySelector("#editor-title"),
@@ -26,17 +25,11 @@ const elements = {
   newSnippetButton: document.querySelector("#new-snippet-button"),
   saveButton: document.querySelector("#save-button"),
   searchInput: document.querySelector("#search-input"),
-  statusBanner: document.querySelector("#status-banner"),
   titleInput: document.querySelector("#title-input"),
   triggerInput: document.querySelector("#trigger-input")
 };
 
 let draft = createDraftSnippet();
-
-function setStatus(message, tone = "neutral") {
-  elements.statusBanner.textContent = message;
-  elements.statusBanner.dataset.tone = tone;
-}
 
 function getSelectedSnippet() {
   return (
@@ -144,29 +137,14 @@ async function handleSave() {
     syncDraftFromForm();
     state.store = await saveSnippet(draft);
     state.selectedSnippetId = draft.id;
-    setStatus("Snippet saved.", "success");
     await refreshStore();
   } catch (error) {
-    setStatus(error.message, "error");
-  }
-}
-
-function handleCancel() {
-  const selected = getSelectedSnippet();
-
-  if (selected) {
-    draft = { ...selected };
-    syncFormFromDraft();
-    setStatus("Changes reverted.");
-  } else {
-    resetToNewSnippet();
-    setStatus("Cleared the form.");
+    window.alert(error.message);
   }
 }
 
 async function handleDelete() {
   if (!state.selectedSnippetId) {
-    setStatus("Select a saved snippet before deleting it.", "error");
     return;
   }
 
@@ -176,7 +154,6 @@ async function handleDelete() {
   }
 
   await deleteSnippet(state.selectedSnippetId);
-  setStatus("Snippet deleted.", "success");
   resetToNewSnippet();
   await refreshStore();
 }
@@ -194,7 +171,6 @@ async function handleExport() {
   link.download = `prompt-expander-${dateStamp}.json`;
   link.click();
   URL.revokeObjectURL(url);
-  setStatus("Exported snippets as JSON.", "success");
 }
 
 async function handleImport(event) {
@@ -208,24 +184,18 @@ async function handleImport(event) {
     const text = await file.text();
     const parsed = JSON.parse(text);
     state.store = await importStore(parsed);
-    setStatus(`Imported ${state.store.snippets.length} snippets.`, "success");
     resetToNewSnippet();
     await refreshStore();
   } catch (error) {
-    setStatus(error.message || "Import failed.", "error");
+    window.alert(error.message || "Import failed.");
   } finally {
     elements.importFileInput.value = "";
   }
 }
 
 function wireEvents() {
-  elements.newSnippetButton.addEventListener("click", () => {
-    resetToNewSnippet();
-    setStatus("Ready for a new snippet.");
-  });
-
+  elements.newSnippetButton.addEventListener("click", resetToNewSnippet);
   elements.saveButton.addEventListener("click", handleSave);
-  elements.cancelButton.addEventListener("click", handleCancel);
   elements.deleteButton.addEventListener("click", handleDelete);
   elements.searchInput.addEventListener("input", renderSnippetList);
   elements.exportButton.addEventListener("click", handleExport);
@@ -242,7 +212,6 @@ function wireEvents() {
 async function init() {
   wireEvents();
   await refreshStore();
-  setStatus("Pick a snippet to edit, or start a new one.");
 }
 
 void init();

@@ -131,8 +131,7 @@ code {
 
 .primary-button,
 .secondary-button,
-.danger-button,
-.ghost-button {
+.danger-button {
   border: 1px solid transparent;
   border-radius: 10px;
   cursor: pointer;
@@ -165,16 +164,6 @@ code {
   color: var(--accent-strong);
 }
 
-.ghost-button {
-  background: transparent;
-  color: var(--muted);
-}
-
-.ghost-button:hover {
-  background: var(--panel-muted);
-  color: var(--ink);
-}
-
 .danger-button {
   background: var(--danger-soft);
   color: var(--danger);
@@ -186,8 +175,7 @@ code {
 
 .primary-button:focus-visible,
 .secondary-button:focus-visible,
-.danger-button:focus-visible,
-.ghost-button:focus-visible {
+.danger-button:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--accent-ring);
 }
