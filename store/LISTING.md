@@ -6,42 +6,49 @@ Paste these directly into the Chrome Web Store Developer Dashboard fields.
 Prompt Expander (>_)
 
 ## Short description (max 132 characters)
-Type a short trigger like >_use-analyzer-prompt and instantly expand it into a full reusable prompt, in any text field.
+Type a short trigger like >_debug and it expands into a full reusable prompt in any text field. Ships with 70+ ready-made prompts.
 
-(117 characters)
+(126 characters)
 
 ## Detailed description
 
-Prompt Expander lets you save reusable snippets of text — prompts, replies,
-templates, anything you type often — and insert them anywhere on the web by
-typing a short trigger.
+Prompt Expander turns short triggers into full blocks of text. Type
+something like `>_summarize-thread` into any text field and press Space or
+Tab — it expands in place into the complete prompt. Stop retyping the same
+instructions into ChatGPT, Claude, Gemini, email, or code review.
+
+The `>_` prefix is deliberate: it never fires by accident on punctuation you
+actually meant to type.
+
+**Comes with a library, ready to use**
+Install and you immediately have 70+ curated prompts covering everyday
+writing, decision-making, analysis, coding, debugging, architecture, cloud,
+and more — for example `>_action-plan`, `>_debug-rigorously`,
+`>_executive-brief`, `>_explain-simply`, `>_review`. Edit any of them or add
+your own.
 
 **How it works**
-1. Create a snippet with a trigger, e.g. `>_use-analyzer-prompt`, and the text
-   you want it to expand into.
-2. Type that trigger into any text field — a chat box, a form, a
-   contenteditable editor.
-3. Press Space or Tab to expand it in place.
-
-Tab expands without inserting a tab character, and Space expands while
-keeping the space — both are safe to use in chat apps where Enter usually
-sends the message.
+1. Type a trigger such as `>_debug` into a chat box, form, or editor.
+2. Press Space (keeps the space) or Tab (inserts no tab character) to
+   expand. Both are safe in chat apps where Enter sends the message.
+3. Manage everything from the options page — create, edit, delete, import,
+   export.
 
 **Features**
-- Local snippet storage — nothing leaves your device
-- Create, edit, delete, import, and export snippets
+- 70+ built-in prompts, fully editable
 - Works in `input`, `textarea`, and common `contenteditable` fields
+- Autocomplete dropdown as you type a trigger
 - Dynamic tokens inside snippets:
   - `${date}` — insert today's date
   - `${clipboard}` — insert your current clipboard contents
   - `${input:name}` — prompt for a value when expanding
   - `${cursor}` — set where your cursor lands after expansion
 - Popup search for quickly finding and copying a snippet
-- Keyboard shortcut to open snippet settings (Alt+Shift+P / Option+Shift+P
-  on Mac)
+- Import and export your whole snippet set as JSON
+- Keyboard shortcut to open settings (Alt+Shift+P / Option+Shift+P on Mac)
 
 **Privacy**
-Prompt Expander has no backend and sends no data anywhere. All snippets are
+Prompt Expander has no backend and sends nothing anywhere. Every snippet is
 stored locally in your browser. See the privacy policy for details.
 
 ## Category
