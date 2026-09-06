@@ -874,7 +874,7 @@ Before considering V1 complete, confirm:
 ## Suggested Repository Structure
 
 ```text
-chrome-text-expander/
+prompt-expander/
   public/
     manifest.json
   src/
