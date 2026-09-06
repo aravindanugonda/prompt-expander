@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Prompt Expander",
+  "name": "Prompt Expander (>_)",
   "version": "0.1.0",
-  "description": "Expand custom triggers like ?use-analyzer-prompt into reusable prompts across chat interfaces and other browser text fields.",
+  "description": "Expand custom triggers like >_use-analyzer-prompt into reusable prompts across chat interfaces and other browser text fields.",
   "permissions": ["storage", "clipboardRead"],
   "host_permissions": ["<all_urls>"],
   "icons": {

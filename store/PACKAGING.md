@@ -1,4 +1,4 @@
-# Packaging & Submission Checklist — Prompt Expander
+# Packaging & Submission Checklist — Prompt Expander (>_)
 
 ## 1. Host the privacy policy (one-time)
 
@@ -13,7 +13,7 @@ git push
 Then use this URL in the dashboard's "Privacy policy" field:
 
 ```
-https://raw.githubusercontent.com/aravindanugonda/text-expander/main/store/PRIVACY_POLICY.md
+https://raw.githubusercontent.com/aravindanugonda/prompt-expander/main/store/PRIVACY_POLICY.md
 ```
 
 (If you'd rather have a real rendered page, enable GitHub Pages for this repo

@@ -101,7 +101,7 @@ export function createEmptySnippet() {
   return {
     id: crypto.randomUUID(),
     title: "",
-    trigger: "?new-prompt",
+    trigger: ">_new-prompt",
     description: "",
     body: "",
     createdAt: now,

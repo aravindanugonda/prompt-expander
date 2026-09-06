@@ -1,7 +1,9 @@
-# Prompt Expander
+# Prompt Expander (>_)
 
 Prompt Expander is a Chrome extension that expands custom triggers like
-`?use-analyzer-prompt` into reusable prompt text across browser text fields.
+`>_use-analyzer-prompt` into reusable prompt text across browser text fields.
+Triggers use a `>_` prefix (the extension's mark) so they don't fire on a
+stray `?` you actually meant to type.
 
 ## What works today
 
@@ -18,7 +20,7 @@ Prompt Expander is a Chrome extension that expands custom triggers like
 
 ## Trigger behavior
 
-- Type a trigger such as `?use-analyzer-prompt`
+- Type a trigger such as `>_use-analyzer-prompt`
 - Press `Space` to expand and keep the space
 - Press `Tab` to expand without inserting a tab character
 

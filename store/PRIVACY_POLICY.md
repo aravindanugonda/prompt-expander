@@ -1,9 +1,9 @@
-# Privacy Policy for Prompt Expander
+# Privacy Policy for Prompt Expander (>_)
 
 Last updated: 2026-09-04
 
 Prompt Expander is a browser extension that expands short text triggers
-(e.g. `?use-analyzer-prompt`) into longer, reusable snippets of text inside
+(e.g. `>_use-analyzer-prompt`) into longer, reusable snippets of text inside
 web page text fields.
 
 ## What data we collect

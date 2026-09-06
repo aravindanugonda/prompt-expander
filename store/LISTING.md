@@ -1,12 +1,12 @@
-# Chrome Web Store Listing Copy — Prompt Expander
+# Chrome Web Store Listing Copy — Prompt Expander (>_)
 
 Paste these directly into the Chrome Web Store Developer Dashboard fields.
 
 ## Extension name
-Prompt Expander
+Prompt Expander (>_)
 
 ## Short description (max 132 characters)
-Type a short trigger like ?use-analyzer-prompt and instantly expand it into a full reusable prompt, in any text field.
+Type a short trigger like >_use-analyzer-prompt and instantly expand it into a full reusable prompt, in any text field.
 
 (117 characters)
 
@@ -17,7 +17,7 @@ templates, anything you type often — and insert them anywhere on the web by
 typing a short trigger.
 
 **How it works**
-1. Create a snippet with a trigger, e.g. `?use-analyzer-prompt`, and the text
+1. Create a snippet with a trigger, e.g. `>_use-analyzer-prompt`, and the text
    you want it to expand into.
 2. Type that trigger into any text field — a chat box, a form, a
    contenteditable editor.
