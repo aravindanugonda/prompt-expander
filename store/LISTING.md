@@ -72,11 +72,16 @@ text.
 - **clipboardRead** — Used only to support the optional `${clipboard}`
   token in a snippet, which inserts the current clipboard contents at
   expansion time. Not used for any other purpose.
-- **Host permission `<all_urls>`** — The extension must be able to detect
-  typed triggers and expand them in text fields on any site the user
-  chooses to use it on (chat apps, forms, editors, etc.). It does not read,
-  store, or transmit page content beyond what is needed to perform the
-  expansion in the field being typed into.
+- **Broad content-script match (`http://*/*`, `https://*/*`)** — Text
+  expansion is a passive, always-on feature: the content script must watch
+  for typed triggers in text fields on whatever site the user is typing on
+  (chat apps, forms, editors), with no way to know those sites in advance.
+  `activeTab` is not usable because it only grants access after an explicit
+  click and does not cover passive typing. The script reads only the text
+  the user is actively typing in the focused field and never transmits page
+  content anywhere. No `host_permissions` are requested — the extension
+  makes no cross-origin requests and does not use tabs, cookies, or
+  webRequest.
 
 ## Data usage disclosure (Privacy practices tab checkboxes)
 - Does this extension collect or use user data? → No personal or sensitive

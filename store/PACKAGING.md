@@ -53,8 +53,8 @@ the file you upload to the dashboard.
      screenshot showing it in action
 6. Go to the **Privacy practices** tab:
    - Paste the single-purpose description from `store/LISTING.md`
-   - Justify each permission (`storage`, `clipboardRead`, host permission)
-     using the text in `store/LISTING.md`
+   - Justify each permission (`storage`, `clipboardRead`) and the broad
+     content-script match using the text in `store/LISTING.md`
    - Add the privacy policy URL from step 1
    - Complete the data-usage disclosure checkboxes (no data collected)
 7. Click **Save Draft**. You do not need to click **Submit for Review** yet —
@@ -63,6 +63,8 @@ the file you upload to the dashboard.
 ## 4. When you're ready to actually publish
 
 Click **Submit for Review** from the dashboard. Expect a manual review delay
-(often several days to ~2 weeks) because of the broad host permission and
-clipboard access — this is normal and not a sign of an error in the
-submission.
+(often several days to ~2 weeks) because the content script runs on all
+sites — this is normal for text-expansion extensions and not a sign of an
+error in the submission. The dashboard will still warn about broad site
+access at review time; the justification in `store/LISTING.md` explains why
+`activeTab` and per-site matches are not viable for passive expansion.

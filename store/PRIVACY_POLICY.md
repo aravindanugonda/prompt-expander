@@ -29,12 +29,13 @@ not have a backend server and does not send any data over the network.
   you trigger an expansion. Clipboard contents are read on-demand at the
   moment of expansion and are inserted directly into the page; they are not
   stored or transmitted anywhere.
-- **Host permissions (`<all_urls>`)** — the extension's core feature is
-  detecting typed triggers and expanding them in text fields on any website
-  you choose to use it on (chat interfaces, forms, editors, etc.). This
-  access is used only to watch for and expand triggers in text inputs on
-  the active page; it is not used to read, log, or transmit page content
-  elsewhere.
+- **Access to web pages (`http://*/*`, `https://*/*`)** — the extension's
+  core feature is detecting typed triggers and expanding them in text fields
+  on any website you choose to use it on (chat interfaces, forms, editors,
+  etc.), so its content script runs on all pages. This access is used only
+  to watch for and expand triggers in the text field you are typing in; it
+  is not used to read, log, or transmit page content elsewhere. The
+  extension requests no `host_permissions` and makes no network requests.
 
 ## Third parties
 
