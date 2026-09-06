@@ -2,6 +2,10 @@
   const STORE_KEY = "prompt-expander-store";
   const MAX_CONTEXT_LENGTH = 240;
 
+  // Snippet triggers are conventionally prefixed with ">_" so a bare ">"
+  // (blockquotes, comparisons, arrows) never surfaces the suggestion list.
+  const TRIGGER_PREFIX = ">_";
+
   const MAX_SUGGESTIONS = 8;
 
   let snippets = [];
@@ -668,7 +672,7 @@
     const tokenMatch = context.textBeforeCaret.match(/(\S+)$/);
     const token = tokenMatch ? tokenMatch[1] : "";
 
-    if (!token) {
+    if (!token || !token.startsWith(TRIGGER_PREFIX)) {
       closeSuggestions();
       return;
     }
