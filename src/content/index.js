@@ -456,17 +456,43 @@
     return rect;
   }
 
+  function setHostVisible(host, visible) {
+    host.style.setProperty("display", visible ? "block" : "none", "important");
+  }
+
   function ensureSuggestionHost() {
     if (suggestionHost) {
       return suggestionHost;
     }
 
     suggestionHost = document.createElement("div");
-    suggestionHost.style.position = "absolute";
-    suggestionHost.style.zIndex = "2147483647";
-    suggestionHost.style.top = "0px";
-    suggestionHost.style.left = "0px";
-    suggestionHost.hidden = true;
+    // Every visual property is forced with !important because page stylesheets
+    // frequently target bare `div` selectors (CSS resets, Angular/Material global
+    // sheets) and would otherwise override our host - including `display`, which
+    // is how we hide the popup.
+    const hostStyles = {
+      position: "absolute",
+      "z-index": "2147483647",
+      top: "0px",
+      left: "0px",
+      margin: "0",
+      padding: "0",
+      border: "0",
+      background: "transparent",
+      "max-width": "none",
+      "max-height": "none",
+      "min-width": "0",
+      "min-height": "0",
+      float: "none",
+      transform: "none",
+      visibility: "visible",
+      opacity: "1",
+      "pointer-events": "auto"
+    };
+    for (const [prop, value] of Object.entries(hostStyles)) {
+      suggestionHost.style.setProperty(prop, value, "important");
+    }
+    setHostVisible(suggestionHost, false);
 
     const shadow = suggestionHost.attachShadow({ mode: "open" });
     const style = document.createElement("style");
@@ -551,19 +577,34 @@
       list.appendChild(item);
     });
 
-    host.hidden = false;
+    setHostVisible(host, true);
+    positionSuggestions();
+  }
+
+  function positionSuggestions() {
+    if (!suggestionState || !suggestionHost) {
+      return;
+    }
 
     const rect = getCaretClientRect(suggestionState.target);
     if (rect) {
-      host.style.left = `${window.scrollX + rect.left}px`;
-      host.style.top = `${window.scrollY + rect.bottom + 4}px`;
+      suggestionHost.style.setProperty(
+        "left",
+        `${window.scrollX + rect.left}px`,
+        "important"
+      );
+      suggestionHost.style.setProperty(
+        "top",
+        `${window.scrollY + rect.bottom + 4}px`,
+        "important"
+      );
     }
   }
 
   function closeSuggestions() {
     suggestionState = null;
     if (suggestionHost) {
-      suggestionHost.hidden = true;
+      setHostVisible(suggestionHost, false);
     }
   }
 
@@ -644,7 +685,20 @@
   document.addEventListener(
     "keydown",
     (event) => {
-      if (event.defaultPrevented || event.isComposing) {
+      if (event.isComposing) {
+        return;
+      }
+
+      // Escape always dismisses our own popup, even if the page already called
+      // preventDefault() on the event or focus has drifted to another element.
+      if (suggestionState && event.key === "Escape") {
+        event.preventDefault();
+        event.stopPropagation();
+        closeSuggestions();
+        return;
+      }
+
+      if (event.defaultPrevented) {
         return;
       }
 
@@ -666,12 +720,6 @@
             (suggestionState.selectedIndex - 1 + suggestionState.items.length) %
             suggestionState.items.length;
           renderSuggestions();
-          return;
-        }
-
-        if (event.key === "Escape") {
-          event.preventDefault();
-          closeSuggestions();
           return;
         }
 
@@ -733,6 +781,58 @@
     },
     true
   );
+
+  // Extra safety nets so the popup can never get "stuck" open: any click outside
+  // it, any scroll (the popup is anchored to document coords and goes stale),
+  // focus leaving the field, or a viewport resize all dismiss it.
+  document.addEventListener(
+    "mousedown",
+    (event) => {
+      if (suggestionState && event.target !== suggestionHost) {
+        closeSuggestions();
+      }
+    },
+    true
+  );
+
+  document.addEventListener(
+    "scroll",
+    (event) => {
+      if (!suggestionState) {
+        return;
+      }
+      const target = suggestionState.target;
+      if (!target.isConnected) {
+        closeSuggestions();
+        return;
+      }
+      // Keep the popup pinned to the caret when a scroll container moves it,
+      // but bail if the field itself scrolled out of view.
+      const scroller = event.target;
+      if (scroller instanceof Node && scroller.contains(target) && scroller !== target) {
+        closeSuggestions();
+        return;
+      }
+      positionSuggestions();
+    },
+    true
+  );
+
+  document.addEventListener(
+    "focusout",
+    (event) => {
+      if (suggestionState && event.target === suggestionState.target) {
+        closeSuggestions();
+      }
+    },
+    true
+  );
+
+  window.addEventListener("resize", () => {
+    if (suggestionState) {
+      closeSuggestions();
+    }
+  });
 
   chrome.storage.onChanged.addListener((changes, areaName) => {
     if (areaName !== "local" || !changes[STORE_KEY]) {
