@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   gap: 12px;
   padding: 14px;
-  height: 540px;
+  max-height: 560px;
 }
 
 .popup-hero {
