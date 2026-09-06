@@ -587,18 +587,48 @@
     }
 
     const rect = getCaretClientRect(suggestionState.target);
-    if (rect) {
-      suggestionHost.style.setProperty(
-        "left",
-        `${window.scrollX + rect.left}px`,
-        "important"
-      );
-      suggestionHost.style.setProperty(
-        "top",
-        `${window.scrollY + rect.bottom + 4}px`,
-        "important"
-      );
+    if (!rect) {
+      return;
     }
+
+    const GAP = 4;
+    const MIN_SPACE = 120;
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - rect.bottom - GAP;
+    const spaceAbove = rect.top - GAP;
+
+    // Flip above the caret when the field sits near the bottom of the viewport
+    // (common for chat composers) and there's more room up top.
+    const placeAbove = spaceBelow < MIN_SPACE && spaceAbove > spaceBelow;
+    const available = Math.max(MIN_SPACE, placeAbove ? spaceAbove : spaceBelow);
+
+    const list = suggestionHost.__list;
+    if (list) {
+      list.style.maxHeight = `${Math.min(240, Math.floor(available))}px`;
+    }
+
+    const hostHeight = suggestionHost.getBoundingClientRect().height || 0;
+    const topViewport = placeAbove
+      ? Math.max(GAP, rect.top - GAP - hostHeight)
+      : rect.bottom + GAP;
+
+    // Keep the popup from spilling off the right edge.
+    const hostWidth = suggestionHost.getBoundingClientRect().width || 0;
+    const leftViewport = Math.max(
+      GAP,
+      Math.min(rect.left, window.innerWidth - hostWidth - GAP)
+    );
+
+    suggestionHost.style.setProperty(
+      "left",
+      `${window.scrollX + leftViewport}px`,
+      "important"
+    );
+    suggestionHost.style.setProperty(
+      "top",
+      `${window.scrollY + topViewport}px`,
+      "important"
+    );
   }
 
   function closeSuggestions() {
