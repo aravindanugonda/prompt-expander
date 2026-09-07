@@ -14,8 +14,8 @@
           <p class="eyebrow">Prompt Expander (&gt;_)</p>
           <h1>Reusable prompts for chat tools</h1>
           <p class="brand-hint muted">
-            Type a trigger like <code>&gt;_use-analyzer-prompt</code> in a text
-            field, then press space or tab to expand it.
+            Type a trigger like <code>&gt;_ask</code> in a text field, then
+            press space or tab to expand it.
           </p>
         </div>
         <div class="topbar-actions">
@@ -23,82 +23,168 @@
           <button id="import-button" class="secondary-button">Import</button>
           <button id="export-button" class="secondary-button">Export</button>
           <input id="import-file-input" type="file" accept="application/json" hidden />
+          <input id="pack-file-input" type="file" accept="application/json" hidden />
         </div>
       </header>
 
-      <div class="columns">
-        <aside class="sidebar">
-          <div class="list-card">
-            <label class="field-label" for="search-input">Search snippets</label>
-            <input id="search-input" class="text-input" placeholder="Filter by title or trigger" />
-            <div id="snippet-list" class="snippet-list"></div>
-          </div>
-        </aside>
+      <nav class="tabs" role="tablist">
+        <button id="tab-snippets" class="tab is-active" role="tab" data-panel="panel-snippets">
+          Snippets
+        </button>
+        <button id="tab-page-access" class="tab" role="tab" data-panel="panel-page-access">
+          Page access
+        </button>
+        <button id="tab-help" class="tab" role="tab" data-panel="panel-help">
+          Help
+        </button>
+      </nav>
 
-        <main class="editor-pane">
-          <section class="panel">
-            <div class="panel-header">
-              <div>
-                <p class="eyebrow">Snippet editor</p>
-                <h2 id="editor-title">Create or update a snippet</h2>
-              </div>
-              <div class="panel-actions">
-                <button id="delete-button" class="danger-button" hidden>Delete</button>
-                <button id="save-button" class="primary-button">Save snippet</button>
-              </div>
+      <section id="panel-snippets" class="tab-panel" role="tabpanel">
+        <div class="columns">
+          <aside class="sidebar">
+            <div class="list-card">
+              <label class="field-label" for="search-input">Search snippets</label>
+              <input id="search-input" class="text-input" placeholder="Filter by title or trigger" />
+              <div id="snippet-list" class="snippet-list"></div>
             </div>
+          </aside>
 
-            <form id="snippet-form" class="snippet-form">
-              <label class="field">
-                <span class="field-label">Title</span>
-                <input id="title-input" class="text-input" maxlength="120" />
-              </label>
+          <main class="editor-pane">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Snippet editor</p>
+                  <h2 id="editor-title">Create or update a snippet</h2>
+                </div>
+                <div class="panel-actions">
+                  <button id="delete-button" class="danger-button" hidden>Delete</button>
+                  <button id="save-button" class="primary-button">Save snippet</button>
+                </div>
+              </div>
 
-              <label class="field">
-                <span class="field-label">Trigger</span>
-                <input id="trigger-input" class="text-input" maxlength="120" />
-              </label>
+              <form id="snippet-form" class="snippet-form">
+                <label class="field">
+                  <span class="field-label">Title</span>
+                  <input id="title-input" class="text-input" maxlength="120" />
+                </label>
 
-              <label class="field">
-                <span class="field-label">Description</span>
-                <input id="description-input" class="text-input" maxlength="180" />
-              </label>
+                <label class="field">
+                  <span class="field-label">Trigger</span>
+                  <input id="trigger-input" class="text-input" maxlength="120" />
+                </label>
 
-              <label class="field">
-                <span class="field-label">Body</span>
-                <textarea
-                  id="body-input"
-                  class="textarea-input"
-                  rows="14"
-                  placeholder="Write the text you want inserted when the trigger expands."
-                ></textarea>
-              </label>
-            </form>
-          </section>
+                <label class="field">
+                  <span class="field-label">Description</span>
+                  <input id="description-input" class="text-input" maxlength="180" />
+                </label>
 
-          <section class="info-grid">
-            <article class="info-card">
-              <p class="eyebrow">Supported tokens</p>
-              <ul class="token-list">
-                <li><code>${date}</code> inserts today as <code>YYYY-MM-DD</code>.</li>
-                <li><code>${clipboard}</code> inserts the current clipboard text.</li>
-                <li><code>${input:name}</code> prompts for a value at expansion time.</li>
-                <li><code>${cursor}</code> places the caret after the snippet expands.</li>
-              </ul>
-            </article>
+                <label class="field">
+                  <span class="field-label">Body</span>
+                  <textarea
+                    id="body-input"
+                    class="textarea-input"
+                    rows="14"
+                    placeholder="Write the text you want inserted when the trigger expands."
+                  ></textarea>
+                </label>
 
-            <article class="info-card">
-              <p class="eyebrow">How expansion works</p>
-              <ul class="token-list">
-                <li>Works in <code>input</code>, <code>textarea</code>, and basic <code>contenteditable</code> fields.</li>
-                <li>Press <code>space</code> to expand and keep the space.</li>
-                <li>Press <code>tab</code> to expand without adding a tab character.</li>
-                <li>Best fit today: chat interfaces like ChatGPT, Claude, Gemini, and similar editors.</li>
-              </ul>
-            </article>
-          </section>
-        </main>
-      </div>
+                <div class="field">
+                  <div class="inputs-header">
+                    <span class="field-label">Inputs</span>
+                    <button id="add-input-button" type="button" class="secondary-button">
+                      Add input
+                    </button>
+                  </div>
+                  <p class="muted inputs-hint">
+                    Define a type for each <code>${input:name}</code> used in the
+                    body. Names not listed here still work as plain text fields.
+                  </p>
+                  <div id="inputs-editor" class="inputs-editor"></div>
+                </div>
+              </form>
+            </section>
+          </main>
+        </div>
+      </section>
+
+      <section id="panel-page-access" class="tab-panel" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Page access</p>
+              <h2>Sites allowed to read page context</h2>
+            </div>
+          </div>
+          <p class="muted inputs-hint">
+            When a snippet uses a <code>${page:url}</code>,
+            <code>${page:title}</code>, <code>${page:domain}</code>, or
+            <code>${page:selection}</code> token, the extension asks the first
+            time it runs on a site. Sites you chose "Always allow" for are listed
+            below. Remove one to be asked again next time.
+          </p>
+          <div id="page-origins-list" class="page-origins-list"></div>
+        </div>
+      </section>
+
+      <section id="panel-help" class="tab-panel" role="tabpanel" hidden>
+        <div class="info-grid">
+          <article class="info-card">
+            <p class="eyebrow">Supported tokens</p>
+            <ul class="token-list">
+              <li><code>${date}</code> inserts today as <code>YYYY-MM-DD</code>.</li>
+              <li><code>${clipboard}</code> inserts the current clipboard text.</li>
+              <li><code>${input:name}</code> asks for a value when expanding (one form for all inputs).</li>
+              <li><code>${cursor}</code> places the caret after the snippet expands.</li>
+              <li><code>${page:url}</code>, <code>${page:title}</code>, <code>${page:domain}</code>, <code>${page:selection}</code> pull in the current page (asks per site — see the Page access tab).</li>
+            </ul>
+          </article>
+
+          <article class="info-card">
+            <p class="eyebrow">How expansion works</p>
+            <ul class="token-list">
+              <li>Works in <code>input</code>, <code>textarea</code>, and basic <code>contenteditable</code> fields.</li>
+              <li>Press <code>space</code> to expand and keep the space.</li>
+              <li>Press <code>tab</code> to expand without adding a tab character.</li>
+              <li>Best fit today: chat interfaces like ChatGPT, Claude, Gemini, and similar editors.</li>
+              <li>The starter snippets each demonstrate a token — open one to see how it is written.</li>
+            </ul>
+          </article>
+
+          <article class="info-card info-card-wide">
+            <p class="eyebrow">Starter snippets</p>
+            <p class="muted inputs-hint">
+              Restore the built-in starter set (about a dozen examples, one per
+              token). This replaces your current snippets but keeps your
+              settings and allowed sites. Use it after an update, or to start
+              over.
+            </p>
+            <div class="pack-actions">
+              <button id="reset-defaults-button" class="danger-button">
+                Reset to starter snippets
+              </button>
+            </div>
+          </article>
+
+          <article class="info-card info-card-wide">
+            <p class="eyebrow">Snippet packs</p>
+            <p class="muted inputs-hint">
+              A pack is a JSON file: either a bare array of snippets or an object
+              with a <code>snippets</code> array (an exported file works as-is).
+              Installing a pack merges it into your set; duplicate triggers are
+              skipped by default.
+            </p>
+            <div class="pack-actions">
+              <button id="install-pack-button" class="primary-button">Install pack from file…</button>
+              <button id="download-sample-pack-button" class="secondary-button">
+                Download sample pack
+              </button>
+              <button id="download-library-pack-button" class="secondary-button">
+                Download full prompt library (70+)
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
     </div>
 
     <script type="module" src="./index.js"></script>

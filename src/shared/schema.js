@@ -1,7 +1,21 @@
 import { DEFAULT_SETTINGS, STORE_VERSION } from "./constants.js";
 
+const INPUT_TYPES = ["text", "textarea", "select"];
+
 function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+export function normalizeInput(rawInput) {
+  return {
+    name: isNonEmptyString(rawInput?.name) ? rawInput.name.trim() : "",
+    label: typeof rawInput?.label === "string" ? rawInput.label.trim() : "",
+    type: INPUT_TYPES.includes(rawInput?.type) ? rawInput.type : "text",
+    options: Array.isArray(rawInput?.options)
+      ? rawInput.options.map((option) => String(option).trim()).filter(Boolean)
+      : [],
+    default: typeof rawInput?.default === "string" ? rawInput.default : ""
+  };
 }
 
 export function normalizeSnippet(rawSnippet) {
@@ -20,6 +34,9 @@ export function normalizeSnippet(rawSnippet) {
       typeof rawSnippet?.description === "string"
         ? rawSnippet.description.trim()
         : "",
+    inputs: Array.isArray(rawSnippet?.inputs)
+      ? rawSnippet.inputs.map(normalizeInput).filter((input) => input.name)
+      : [],
     createdAt: isNonEmptyString(rawSnippet?.createdAt)
       ? rawSnippet.createdAt
       : timestamp,
@@ -52,6 +69,19 @@ export function validateSnippet(snippet, snippets = []) {
 
   if (duplicate) {
     errors.push(`Trigger "${snippet.trigger}" is already in use.`);
+  }
+
+  const seenInputNames = new Set();
+  for (const input of snippet.inputs ?? []) {
+    const key = input.name.toLowerCase();
+    if (seenInputNames.has(key)) {
+      errors.push(`Input "${input.name}" is defined more than once.`);
+    }
+    seenInputNames.add(key);
+
+    if (input.type === "select" && input.options.length === 0) {
+      errors.push(`Input "${input.name}" is a dropdown but has no options.`);
+    }
   }
 
   return errors;
@@ -104,6 +134,7 @@ export function createEmptySnippet() {
     trigger: ">_new-prompt",
     description: "",
     body: "",
+    inputs: [],
     createdAt: now,
     updatedAt: now
   };

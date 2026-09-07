@@ -12,10 +12,15 @@ out_zip="$out_dir/prompt-expander-$version.zip"
 mkdir -p "$out_dir"
 rm -f "$out_zip"
 
+# Build the bundled content script that manifest.json points at.
+node build.js
+
 zip -r "$out_zip" \
   manifest.json \
   public \
   src \
-  -x "*.DS_Store"
+  packs \
+  dist/content.js \
+  -x "*.DS_Store" "src/content/index.js"
 
 echo "Created $out_zip"

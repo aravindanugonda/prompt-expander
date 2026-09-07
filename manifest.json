@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Prompt Expander (>_)",
-  "version": "1.0.0",
-  "description": "Expand custom triggers like >_use-analyzer-prompt into reusable prompts across chat interfaces and other browser text fields.",
+  "version": "1.1.0",
+  "description": "Expand custom triggers like >_review-code into reusable prompts, now with typed inputs, page-context tokens, and installable packs, in any text field.",
   "permissions": ["storage", "clipboardRead"],
   "icons": {
     "16": "public/icons/icon16.png",
@@ -34,7 +34,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["src/content/index.js"],
+      "js": ["dist/content.js"],
       "run_at": "document_idle"
     }
   ]

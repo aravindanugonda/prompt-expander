@@ -1,9 +1,9 @@
 # Privacy Policy for Prompt Expander (>_)
 
-Last updated: 2026-09-04
+Last updated: 2026-09-06
 
 Prompt Expander is a browser extension that expands short text triggers
-(e.g. `>_use-analyzer-prompt`) into longer, reusable snippets of text inside
+(e.g. `>_ask`) into longer, reusable snippets of text inside
 web page text fields.
 
 ## What data we collect
@@ -29,13 +29,24 @@ not have a backend server and does not send any data over the network.
   you trigger an expansion. Clipboard contents are read on-demand at the
   moment of expansion and are inserted directly into the page; they are not
   stored or transmitted anywhere.
+- **Page-context tokens (`${page:url}`, `${page:title}`, `${page:domain}`,
+  `${page:selection}`)** — a snippet may include these to insert the current
+  page's address, tab title, hostname, or the text you have highlighted. The
+  first time a snippet uses one on a given site, the extension asks whether
+  to allow it there; you can allow once, allow that site permanently, or
+  cancel. The list of allowed sites is stored locally and is shown, with a
+  Remove button per site, on the options page. These values are read only at
+  the moment of expansion and inserted directly into the text field you are
+  typing in. They are never stored or transmitted anywhere.
 - **Access to web pages (`http://*/*`, `https://*/*`)** — the extension's
   core feature is detecting typed triggers and expanding them in text fields
   on any website you choose to use it on (chat interfaces, forms, editors,
   etc.), so its content script runs on all pages. This access is used only
-  to watch for and expand triggers in the text field you are typing in; it
-  is not used to read, log, or transmit page content elsewhere. The
-  extension requests no `host_permissions` and makes no network requests.
+  to watch for and expand triggers in the text field you are typing in, and
+  (only with your per-site consent) to read the page-context values listed
+  above at expansion time. It is not used to log or transmit page content
+  anywhere. The extension requests no `host_permissions` and makes no
+  network requests.
 
 ## Third parties
 

@@ -44,25 +44,65 @@ body {
   gap: 10px;
 }
 
+/* ---- Tabs ---------------------------------------------------------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  padding: 0 4px;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 650;
+  font-size: 0.92rem;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab.is-active {
+  color: var(--accent-strong);
+  border-bottom-color: var(--accent);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  border-radius: 6px;
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
 /* ---- Two-column body ------------------------------------------------- */
 
+/* The editor pane grows to show the whole form; the page scrolls if it's
+   taller than the viewport. The sidebar stretches to match that height, and
+   its snippet list sticks + scrolls on its own so both columns stay aligned. */
 .columns {
-  display: grid;
+  display: flex;
   gap: 20px;
-  grid-template-columns: minmax(280px, 320px) minmax(0, 1fr);
-  align-items: start;
+  align-items: stretch;
 }
 
 .sidebar {
-  position: sticky;
-  top: 24px;
-  align-self: start;
+  flex: 0 0 300px;
 }
 
 .editor-pane {
-  display: grid;
-  gap: 20px;
-  align-content: start;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .list-card,
@@ -75,16 +115,23 @@ body {
 }
 
 .list-card {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+  width: 100%;
+  min-height: 0;
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
 }
 
 .snippet-list {
   display: grid;
   gap: 8px;
+  align-content: start;
   overflow-y: auto;
-  min-height: 200px;
-  max-height: calc(100vh - 220px);
+  flex: 1 1 auto;
+  min-height: 160px;
   padding-right: 4px;
 }
 
@@ -173,12 +220,93 @@ body {
   padding: 16px;
 }
 
+.info-card-wide {
+  grid-column: 1 / -1;
+}
+
+.pack-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
 .token-list {
   margin: 0;
   padding-left: 1.1rem;
   display: grid;
   gap: 8px;
   font-size: 0.88rem;
+}
+
+/* ---- Inputs editor + page access ------------------------------- */
+
+.inputs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.inputs-hint {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.82rem;
+}
+
+.inputs-editor {
+  display: grid;
+  gap: 10px;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 130px minmax(0, 1.4fr) auto;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  background: var(--panel-muted);
+}
+
+.input-row .text-input,
+.input-row select {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  padding: 0.45rem 0.55rem;
+  color: var(--ink);
+  font: inherit;
+}
+
+.input-row-empty {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.page-origins-list {
+  display: grid;
+  gap: 8px;
+}
+
+.page-origin-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  background: var(--panel);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 720px) {
+  .input-row {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* ---- Responsive ------------------------------------------------- */
@@ -188,13 +316,24 @@ body {
     padding: 14px;
   }
 
-  .columns,
   .info-grid {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
+  /* Stack the columns and let the page scroll normally on narrow screens. */
+  .columns {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .editor-pane {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .list-card {
     position: static;
+    max-height: none;
   }
 
   .snippet-list {

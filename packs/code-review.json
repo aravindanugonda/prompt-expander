@@ -1,0 +1,45 @@
+{
+  "pack": {
+    "name": "Code Review",
+    "version": "1.1.0",
+    "description": "Focused review passes that go deeper than the >_review-code starter. No trigger overlaps with the built-in set."
+  },
+  "snippets": [
+    {
+      "title": "Security Review",
+      "trigger": ">_review-security",
+      "description": "Threat-focused pass over code on the clipboard. Copy the code first.",
+      "body": "Review the ${input:language} code below for security issues only.\n\nCode:\n${clipboard}\n\nCheck: input validation, authn/authz, injection, secrets handling, unsafe deserialization, SSRF, path traversal, and dependency risk. Report each finding with severity, a concrete exploit path, and the fix.\n\n${cursor}",
+      "inputs": [
+        {
+          "name": "language",
+          "label": "Language",
+          "type": "select",
+          "options": ["Java", "Python", "JavaScript", "TypeScript", "Go", "Rust", "PHP", "Other"],
+          "default": "Python"
+        }
+      ]
+    },
+    {
+      "title": "Performance Review",
+      "trigger": ">_review-perf",
+      "description": "Hot-path and allocation review of code on the clipboard. Copy the code first.",
+      "body": "Review the code below for performance. Copy the code first.\n\nCode:\n${clipboard}\n\nFocus on: algorithmic complexity, N+1 queries, unnecessary allocations, blocking I/O on hot paths, and cache opportunities. Rank findings by expected impact and give the change for each.\n\n${cursor}",
+      "inputs": []
+    },
+    {
+      "title": "Test Coverage Review",
+      "trigger": ">_review-tests",
+      "description": "Point out the missing tests for code on the clipboard. Copy the code first.",
+      "body": "Look at the code below and tell me what tests are missing.\n\nCode:\n${clipboard}\n\nList the untested branches, boundary values, error paths, and concurrency cases. For each, give a one-line test description and the input that exercises it.\n\n${cursor}",
+      "inputs": []
+    },
+    {
+      "title": "PR Description From Diff",
+      "trigger": ">_pr-description",
+      "description": "Turn a diff or notes on the clipboard into a PR description.",
+      "body": "Write a pull request description from the changes below.\n\nChanges:\n${clipboard}\n\nSections: Summary, Motivation, What changed, Testing, Risk / rollback. Keep it tight.\n\n${cursor}",
+      "inputs": []
+    }
+  ]
+}

@@ -88,6 +88,39 @@ export async function saveSnippet(snippetDraft) {
   return nextStore;
 }
 
+// Replace the snippet set with the current starter snippets, keeping settings.
+// This is the only path for an existing install to pick up a new default set,
+// since ensureStore only seeds on an empty store.
+export async function resetSnippetsToDefaults() {
+  const store = await ensureStore();
+  return saveStore({
+    ...store,
+    snippets: DEFAULT_SNIPPETS.map((snippet) => ({ ...snippet }))
+  });
+}
+
+export async function updateSettings(patch) {
+  const store = await ensureStore();
+  return saveStore({
+    ...store,
+    settings: { ...store.settings, ...patch }
+  });
+}
+
+export async function allowPageContextOrigin(origin) {
+  if (typeof origin !== "string" || !origin) {
+    return ensureStore();
+  }
+
+  const store = await ensureStore();
+  const origins = new Set(store.settings.pageContextOrigins ?? []);
+  origins.add(origin);
+  return saveStore({
+    ...store,
+    settings: { ...store.settings, pageContextOrigins: [...origins] }
+  });
+}
+
 export async function deleteSnippet(snippetId) {
   const store = await ensureStore();
   const nextSnippets = store.snippets.filter((snippet) => snippet.id !== snippetId);
@@ -106,6 +139,104 @@ export async function importStore(rawStore) {
   }
 
   return saveStore(result.store);
+}
+
+const PACK_STRATEGIES = ["skip", "replace", "rename"];
+
+// A pack is a bare snippets array, a `{ snippets: [...] }` object, or a full
+// exported store. Unlike importStore, this never replaces the user's set.
+export function readPackSnippets(rawPack) {
+  const list = Array.isArray(rawPack)
+    ? rawPack
+    : Array.isArray(rawPack?.snippets)
+      ? rawPack.snippets
+      : null;
+
+  if (!list) {
+    throw new Error(
+      "Pack file must be a snippets array or an object with a snippets array."
+    );
+  }
+
+  return list
+    .map(normalizeSnippet)
+    .filter((snippet) => snippet.trigger && snippet.body);
+}
+
+// Pure merge: no storage, no validation side effects. `existing` and `incoming`
+// are already-normalized snippet arrays.
+export function mergeSnippets(existing, incoming, strategy = "skip") {
+  const mode = PACK_STRATEGIES.includes(strategy) ? strategy : "skip";
+  const byTrigger = new Map(
+    existing.map((snippet) => [snippet.trigger.toLowerCase(), snippet])
+  );
+  const next = [...existing];
+  const summary = { added: 0, replaced: 0, renamed: 0, skipped: 0, strategy: mode };
+
+  for (const snippet of incoming) {
+    const key = snippet.trigger.toLowerCase();
+    const match = byTrigger.get(key);
+
+    if (!match) {
+      const fresh = { ...snippet, id: crypto.randomUUID() };
+      next.push(fresh);
+      byTrigger.set(key, fresh);
+      summary.added += 1;
+      continue;
+    }
+
+    if (mode === "skip") {
+      summary.skipped += 1;
+      continue;
+    }
+
+    if (mode === "replace") {
+      const index = next.findIndex((entry) => entry.id === match.id);
+      next[index] = { ...snippet, id: match.id, createdAt: match.createdAt };
+      byTrigger.set(key, next[index]);
+      summary.replaced += 1;
+      continue;
+    }
+
+    let suffix = 2;
+    let candidate = `${snippet.trigger}-${suffix}`;
+    while (byTrigger.has(candidate.toLowerCase())) {
+      suffix += 1;
+      candidate = `${snippet.trigger}-${suffix}`;
+    }
+    const fresh = { ...snippet, id: crypto.randomUUID(), trigger: candidate };
+    next.push(fresh);
+    byTrigger.set(candidate.toLowerCase(), fresh);
+    summary.renamed += 1;
+  }
+
+  return { snippets: next, summary };
+}
+
+export async function installPack(rawPack, { strategy } = {}) {
+  const store = await ensureStore();
+  const parsed = readPackSnippets(rawPack);
+
+  // The snippet editor validates on save; hold pack imports to the same bar so
+  // a broken pack can't slip in an empty dropdown or a name collision.
+  const incoming = [];
+  let rejected = 0;
+  for (const snippet of parsed) {
+    if (validateSnippet(snippet, parsed).length === 0) {
+      incoming.push(snippet);
+    } else {
+      rejected += 1;
+    }
+  }
+
+  const mode = PACK_STRATEGIES.includes(strategy)
+    ? strategy
+    : store.settings.packDuplicateStrategy;
+
+  const { snippets, summary } = mergeSnippets(store.snippets, incoming, mode);
+  summary.rejected = rejected;
+  const saved = await saveStore({ ...store, snippets });
+  return { store: saved, summary };
 }
 
 export function createDraftSnippet() {
