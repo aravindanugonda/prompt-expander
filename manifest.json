@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Prompt Expander (>_)",
   "version": "1.1.0",
-  "description": "Expand custom triggers like >_review-code into reusable prompts, now with typed inputs, page-context tokens, and installable packs, in any text field.",
+  "description": "Expand triggers like >_review-code into full prompts, with typed inputs, page-context tokens, and installable packs, in any field.",
   "permissions": ["storage", "clipboardRead"],
   "icons": {
     "16": "public/icons/icon16.png",
